@@ -1,0 +1,21 @@
+[
+    {
+        "guid": "55330139-1f8b-4e5d-a207-2afece96e7a6",
+        "name": "BlockTranscoding",
+        "overview": "Block transcoding based on media resolution.",
+        "description": "",
+        "owner": "lucapolesel",
+        "category": "General",
+        "imageUrl": "",
+        "versions": [
+            {
+                "version": "1.0.0.0",
+                "changelog": "- Initial release",
+                "targetAbi": "10.8.0.0",
+                "sourceUrl": "https://github.com/lucapolesel/BlockTranscoding/releases/download/v1.0/blocktranscoding_1.0.0.0.zip",
+                "checksum": "97c71aed02bf8b57e029819cf21431ba",
+                "timestamp": "2022-10-06T01:02:00Z"
+            }
+        ]
+    }
+]
