@@ -148,7 +148,7 @@ public class BlockTranscoding : IServerEntryPoint, IDisposable
                         continue;
                     }
 
-                    // Check if the video is being transcoded because it was over the max resolution
+                    // Check if the video that is being transcoded is over the max allowed resolution
                     var maxRes = Plugin.Instance!.Configuration.MaxResolution;
                     var maxResSize = ResolutionUtility.GetSize(maxRes);
 
