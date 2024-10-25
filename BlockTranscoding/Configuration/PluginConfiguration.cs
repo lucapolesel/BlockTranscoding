@@ -54,7 +54,7 @@ public class PluginConfiguration : BasePluginConfiguration
     /// <summary>
     /// Gets or sets a value indicating whether the plugin should start blocking the playback.
     /// </summary>
-    public bool BlockTranscoding { get; set; } = false;
+    public bool BlockTranscoding { get; set; }
 
     /// <summary>
     /// Gets or sets a custom message when the playback gets stopped.
