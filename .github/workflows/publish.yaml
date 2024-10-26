@@ -11,7 +11,6 @@ jobs:
     uses: jellyfin/jellyfin-meta-plugins/.github/workflows/publish.yaml@master
     with:
       version: ${{ github.event.release.tag_name }}
-      is-unstable: ${{ github.event.release.prerelease }}
     secrets:
       deploy-host: ${{ secrets.DEPLOY_HOST }}
       deploy-user: ${{ secrets.DEPLOY_USER }}
