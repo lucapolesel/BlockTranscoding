@@ -5,70 +5,70 @@
     <title>Block transcoding</title>
 </head>
 <body>
-    <div id="TemplateConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
-        <div data-role="content">
-            <div class="content-primary">
-                <form id="TemplateConfigForm">
-                    <div class="checkboxContainer checkboxContainer-withDescription">
-                        <label class="emby-checkbox-label">
-                            <input id="BlockTranscoding" name="BlockTranscoding" type="checkbox" is="emby-checkbox" />
-                            <span>Block transcoding</span>
-                        </label>
-                    </div>
-                    <div class="selectContainer">
-                        <label class="selectLabel" for="MaxResolution">Block trasconding above:</label>
-                        <select is="emby-select" id="MaxResolution" name="MaxResolution" class="emby-select-withcolor emby-select">
-                            <option id="optStandardDefinition" value="StandardDefinition">480p</option>
-                            <option id="optHighDefinition" value="HighDefinition">720p</option>
-                            <option id="optFullHD" value="FullHD">1080p</option>
-                            <option id="optQuadHD" value="QuadHD">1440p</option>
-                            <option id="optUltraHD" value="UltraHD">2160p</option>
-                        </select>
-                    </div>
-                    <div class="inputContainer">
-                        <label class="inputeLabel inputLabelUnfocused" for="CustomMessage">Custom message:</label>
-                        <input id="CustomMessage" name="CustomMessage" type="text" is="emby-input" />
-                    </div>
-                    <div>
-                        <button is="emby-button" type="submit" class="raised button-submit block emby-button">
-                            <span>Save</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
+<div class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox" data-role="page" id="TemplateConfigPage">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="TemplateConfigForm">
+                <div class="checkboxContainer checkboxContainer-withDescription">
+                    <label class="emby-checkbox-label">
+                        <input id="BlockTranscoding" is="emby-checkbox" name="BlockTranscoding" type="checkbox"/>
+                        <span>Block transcoding</span>
+                    </label>
+                </div>
+                <div class="selectContainer">
+                    <label class="selectLabel" for="MaxResolution">Block trasconding above:</label>
+                    <select class="emby-select-withcolor emby-select" id="MaxResolution" is="emby-select" name="MaxResolution">
+                        <option id="optStandardDefinition" value="StandardDefinition">480p</option>
+                        <option id="optHighDefinition" value="HighDefinition">720p</option>
+                        <option id="optFullHD" value="FullHD">1080p</option>
+                        <option id="optQuadHD" value="QuadHD">1440p</option>
+                        <option id="optUltraHD" value="UltraHD">2160p</option>
+                    </select>
+                </div>
+                <div class="inputContainer">
+                    <label class="inputeLabel inputLabelUnfocused" for="CustomMessage">Custom message:</label>
+                    <input id="CustomMessage" is="emby-input" name="CustomMessage" type="text"/>
+                </div>
+                <div>
+                    <button class="raised button-submit block emby-button" is="emby-button" type="submit">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
         </div>
-        <script type="text/javascript">
-            var TemplateConfig = {
-                pluginUniqueId: '55330139-1f8b-4e5d-a207-2afece96e7a6'
-            };
+    </div>
+    <script type="text/javascript">
+        var TemplateConfig = {
+            pluginUniqueId: '55330139-1f8b-4e5d-a207-2afece96e7a6'
+        };
 
-            document.querySelector('#TemplateConfigPage')
-                .addEventListener('pageshow', function() {
-                    Dashboard.showLoadingMsg();
-                    ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
-                        document.querySelector('#BlockTranscoding').checked = config.BlockTranscoding;
-                        document.querySelector('#MaxResolution').value = config.MaxResolution;
-                        document.querySelector('#CustomMessage').value = config.CustomMessage;
-                        Dashboard.hideLoadingMsg();
-                    });
-                });
-
-            document.querySelector('#TemplateConfigForm')
-                .addEventListener('submit', function(e) {
+        document.querySelector('#TemplateConfigPage')
+            .addEventListener('pageshow', function () {
                 Dashboard.showLoadingMsg();
-                    ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
-                        config.BlockTranscoding = document.querySelector('#BlockTranscoding').checked;
-                        config.MaxResolution = document.querySelector('#MaxResolution').value;
-                        config.CustomMessage = document.querySelector('#CustomMessage').value;
-                        ApiClient.updatePluginConfiguration(TemplateConfig.pluginUniqueId, config).then(function (result) {
-                            Dashboard.processPluginConfigurationUpdateResult(result);
+                ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
+                    document.querySelector('#BlockTranscoding').checked = config.BlockTranscoding;
+                    document.querySelector('#MaxResolution').value = config.MaxResolution;
+                    document.querySelector('#CustomMessage').value = config.CustomMessage;
+                    Dashboard.hideLoadingMsg();
+                });
+            });
+
+        document.querySelector('#TemplateConfigForm')
+            .addEventListener('submit', function (e) {
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
+                    config.BlockTranscoding = document.querySelector('#BlockTranscoding').checked;
+                    config.MaxResolution = document.querySelector('#MaxResolution').value;
+                    config.CustomMessage = document.querySelector('#CustomMessage').value;
+                    ApiClient.updatePluginConfiguration(TemplateConfig.pluginUniqueId, config).then(function (result) {
+                        Dashboard.processPluginConfigurationUpdateResult(result);
                     });
                 });
 
                 e.preventDefault();
                 return false;
             });
-        </script>
-    </div>
+    </script>
+</div>
 </body>
 </html>

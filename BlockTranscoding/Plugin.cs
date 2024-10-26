@@ -10,15 +10,15 @@ using MediaBrowser.Model.Serialization;
 namespace BlockTranscoding;
 
 /// <summary>
-/// The main plugin.
+///     The main plugin.
 /// </summary>
 public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Plugin"/> class.
+    ///     Initializes a new instance of the <see cref="Plugin" /> class.
     /// </summary>
-    /// <param name="applicationPaths">Instance of the <see cref="IApplicationPaths"/> interface.</param>
-    /// <param name="xmlSerializer">Instance of the <see cref="IXmlSerializer"/> interface.</param>
+    /// <param name="applicationPaths">Instance of the <see cref="IApplicationPaths" /> interface.</param>
+    /// <param name="xmlSerializer">Instance of the <see cref="IXmlSerializer" /> interface.</param>
     public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
         : base(applicationPaths, xmlSerializer)
     {
@@ -28,7 +28,7 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     }
 
     /// <summary>
-    /// Fired after configuration has been saved so the playback timer can be stopped or started
+    ///     Fired after configuration has been saved so the playback timer can be stopped or started
     /// </summary>
     public event EventHandler? BlockTranscodingChanged;
 
@@ -39,21 +39,14 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     public override Guid Id => Guid.Parse("55330139-1f8b-4e5d-a207-2afece96e7a6");
 
     /// <summary>
-    /// Gets the current plugin instance.
+    ///     Gets the current plugin instance.
     /// </summary>
     public static Plugin? Instance { get; private set; }
 
     /// <inheritdoc />
     public IEnumerable<PluginPageInfo> GetPages()
     {
-        return new[]
-        {
-            new PluginPageInfo
-            {
-                Name = this.Name,
-                EmbeddedResourcePath = string.Format(CultureInfo.InvariantCulture, "{0}.Configuration.configPage.html", GetType().Namespace)
-            }
-        };
+        return new[] { new PluginPageInfo { Name = Name, EmbeddedResourcePath = string.Format(CultureInfo.InvariantCulture, "{0}.Configuration.configPage.html", GetType().Namespace) } };
     }
 
     private void OnConfigurationChanged(object? sender, BasePluginConfiguration e)
